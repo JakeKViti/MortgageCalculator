@@ -19,7 +19,16 @@ namespace MortgageCalculator.Controllers
         }
         public IActionResult App()
         {
-            return View();
+            Loan loan = new();
+
+            loan.Payment = 0.0m;
+            loan.TotalInterest = 0.0m;
+            loan.TotalCost = 0.0m;
+            loan.Rate = 3.5m;
+            loan.Amount = 15000m;
+            loan.Term = 60;
+
+            return View(loan);
         }
 
         public IActionResult Privacy()
