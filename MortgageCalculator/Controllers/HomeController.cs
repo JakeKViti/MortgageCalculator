@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MortgageCalculator.Models;
 using System.Diagnostics;
+using MortgageCalculator.Helpers;
 
 namespace MortgageCalculator.Controllers
 {
@@ -29,6 +30,17 @@ namespace MortgageCalculator.Controllers
             loan.Term = 60;
 
             return View(loan);
+        }
+
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult App(Loan loan)
+        {
+            var loanHelper = new LoanHelper();
+
+            Loan newLoan = loanHelper.GetPayments(loan); 
+
+            return View(newLoan);
         }
 
         public IActionResult Privacy()
